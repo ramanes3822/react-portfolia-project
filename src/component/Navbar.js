@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "./image/Raam_logo2.png";
+import logo from "./image/Raam_logo2.jpg";
 
 //react font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
