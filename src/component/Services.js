@@ -10,7 +10,7 @@ const Services = () => {
         <h1 className="py-5">Services</h1>
         <div className="container">
           <div className="row">
-            <div className="col-md-3 col-sm-6">
+            <div className="col-lg-3 col-md-6 col-sm-6">
               <div className="box">
                 <div className="icons-bg">
                   <FontAwesomeIcon
@@ -27,7 +27,7 @@ const Services = () => {
               </div>
             </div>
             {/*-Web development-*/}
-            <div className="col-md-3 col-sm-6">
+            <div className="col-lg-3 col-md-6 col-sm-6">
               <div className="box">
                 <div className="icons-bg">
                   <FontAwesomeIcon
@@ -41,7 +41,7 @@ const Services = () => {
               </div>
             </div>
             {/*-Facebook-*/}
-            <div className="col-md-3 col-sm-6">
+            <div className="col-lg-3 col-md-6 col-sm-6">
               <div className="box">
                 <div className="icons-bg">
                   <FontAwesomeIcon
@@ -58,7 +58,7 @@ const Services = () => {
               </div>
             </div>
             {/*-Google Ads-*/}
-            <div className="col-md-3 col-sm-6">
+            <div className="col-lg-3 col-md-6 col-sm-6">
               <div className="box">
                 <div className="icons-bg">
                   <FontAwesomeIcon
