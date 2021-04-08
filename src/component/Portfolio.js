@@ -1,7 +1,7 @@
 import React from "react";
-import Project1 from "./image/project1.jpg";
-import Project2 from "./image/project2.jpg";
-import Project3 from "./image/project3.jpg";
+import Project1 from "../images/portfolio1.jpg";
+import Project2 from "../images/calculator_project.JPG";
+import Project3 from "../images/project3.jpg";
 //font awesome import
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearchPlus } from "@fortawesome/free-solid-svg-icons";
@@ -14,20 +14,20 @@ const Portfolio = () => {
     {
       id: 1,
       img: Project1,
-      name: "project1",
-      projectLink: "https://github.com/ramanes3822/myportfolia",
+      name: "First portfolio",
+      projectLink: "https://ramanesportfolia.netlify.app/",
       githubLink: "https://github.com/ramanes3822/myportfolia",
       text:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero voluptatibus repellendus blanditiis possimus non repudiandae dolorem",
+        "This is my first portfolio project, develop by using only javascript,html,css.",
     },
     {
       id: 2,
       img: Project2,
-      name: "project2",
-      projectLink: "https://github.com/ramanes3822/myportfolia",
-      githubLink: "https://github.com/ramanes3822/myportfolia",
+      name: "Simple Javascript calculator",
+      projectLink: "https://ramanes-javascript-calculator.netlify.app/",
+      githubLink: "https://github.com/ramanes3822/javascript-calculator",
       text:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero voluptatibus repellendus blanditiis possimus non repudiandae dolorem",
+        "This is a simple javascript calculator, develop with javascript,html,css",
     },
     {
       id: 3,
@@ -55,7 +55,7 @@ const Portfolio = () => {
             className="popbox-hyper-link"
             onClick={() => window.open(item.projectLink, "_blank")}
           >
-            https://react-redux-task-manager.herokuapp.com/
+            {item.projectLink}
           </a>
           <br />
           <b>Github: </b>
