@@ -1,93 +1,153 @@
-import React from "react";
+import React, { useState } from "react";
+import emailjs from "emailjs-com";
+import { useForm } from "react-hook-form";
 
-const Contact = () => {
+const Contacts = () => {
+  const [successMessage, setSuccessMessage] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const serviceID = "service_ID";
+  const templateID = "template_ID";
+  const userID = "user_Ht8xiocefdmMQ9ZwnkY8w";
+
+  const sendEmail = (serviceID, templateID, variables, userID) => {
+    emailjs
+      .send(serviceID, templateID, variables, userID)
+      .then(() => {
+        setSuccessMessage(
+          "Form sent successfully! I'll contact you as soon as possible."
+        );
+      })
+      .catch((err) => console.error(`Something went wrong ${err}`));
+  };
+
+  const onSubmit = (data, r) => {
+    sendEmail(
+      serviceID,
+      templateID,
+      {
+        name: data.name,
+        phone: data.phone,
+        email: data.email,
+        subject: data.subject,
+        description: data.description,
+      },
+      userID
+    );
+    r.target.reset();
+  };
+
   return (
-    <div>
-      <section className="contact" id="contact">
-        <div className="max-width">
-          <h2 className="title">Contact me</h2>
-          <div className="contact-content">
-            <div className="column left">
-              <div className="text">Get in Touch</div>
-              <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-                aliquam ut ratione exercitationem ab, voluptatem ex numquam quam
-                at tempore!
-              </p>
-              <div className="icons">
-                <div className="row">
-                  <i className="fas fa-user"></i>
-                  <div className="info">
-                    <div className="head">Name</div>
-                    <div className="sub-title">Ramanes Ramalingam</div>
-                  </div>
-                </div>
-                <div className="row">
-                  <i className="fas fa-map-marker-alt"></i>
-                  <div className="info">
-                    <div className="head">Address</div>
-                    <div className="sub-title">selangor malaysia</div>
-                  </div>
-                </div>
-                <div className="row">
-                  <i className="fas fa-envelope"></i>
-                  <div className="info">
-                    <div className="head">Email</div>
-                    <div className="sub-title">ramanes3822@gmail.com</div>
-                  </div>
-                </div>
+    <div id="contacts" className="contacts">
+      <div className="text-center">
+        <h1>contact me</h1>
+        <p>
+          Please fill out the form and describe you project needs and I'll
+          contact you as soon as possible.
+        </p>
+        <span className="success-message">{successMessage}</span>
+      </div>
+      <div className="container">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="row">
+            <div className="col-md-6 col-xs-12">
+              {/* NAME INPUT */}
+              <div className="text-center">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Name"
+                  name="name"
+                  aria-invalid={errors.name ? "true" : "false"}
+                  {...register("name", {
+                    required: "Please enter your name",
+                    maxLength: {
+                      value: 20,
+                      message:
+                        "Please enter a name with fewer than 20 characters",
+                    },
+                  })}
+                />
+
+                <div className="line"></div>
+              </div>
+              <span className="error-message">
+                {errors.name && errors.name.message}
+              </span>
+              {/* PHONE INPUT */}
+              <div className="text-center">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Phone Number"
+                  name="phone"
+                />
+                <div className="line"></div>
+              </div>
+
+              {/* EMAIL INPUT */}
+              <div className="text-center">
+                <input
+                  type="email"
+                  className="form-control"
+                  placeholder="Email"
+                  name="email"
+                  aria-invalid={errors.email ? "true" : "false"}
+                  {...register("email", {
+                    required: "Please enter a valid email",
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: "invalid Email",
+                    },
+                  })}
+                />
+                <div className="line"></div>
+              </div>
+              <span className="error-message">
+                {errors.email && errors.email.message}
+              </span>
+              {/* SUBJECT INPUT */}
+              <div className="text-center">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Subject"
+                  name="subject"
+                />
+                <div className="line"></div>
               </div>
             </div>
-            <div className="column right">
-              <div className="text">Message me</div>
-              <form autocomplete="off" method="post" name="google-sheet">
-                <div className="fields">
-                  <div className="field name">
-                    <input
-                      type="text"
-                      placeholder="Name"
-                      name="Name"
-                      required
-                    />
-                  </div>
-                  <div className="field email">
-                    <input
-                      type="email"
-                      placeholder="Email"
-                      name="Email"
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="field">
-                  <input
-                    type="text"
-                    placeholder="Subject"
-                    name="Subject"
-                    required
-                  />
-                </div>
-                <div className="field textarea">
-                  <textarea
-                    cols="30"
-                    rows="10"
-                    placeholder="Describe project.."
-                    required
-                    name="Describe"
-                  ></textarea>
-                </div>
-                <div className="button">
-                  <button type="submit" name="submit">
-                    Send message
-                  </button>
-                </div>
-              </form>
+            <div className="col-md-6 col-xs-12">
+              {/* DESCRIPTION */}
+              <div className="text-center">
+                <textarea
+                  type="text"
+                  className="form-control"
+                  placeholder="Please describe shortly you project..."
+                  name="description"
+                  aria-invalid={errors.description ? "true" : "false"}
+                  {...register("description", {
+                    required: "Please describe shortly your project needs...",
+                  })}
+                ></textarea>
+                <div className="line"></div>
+              </div>
+              <span className="error-message">
+                {errors.description && errors.description.message}
+              </span>
+              <button className="btn-main-offer contact-btn" type="submit">
+                contact me
+              </button>
             </div>
           </div>
-        </div>
-      </section>
+        </form>
+      </div>
     </div>
   );
 };
 
-export default Contact;
+export default Contacts;
