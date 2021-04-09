@@ -4,11 +4,13 @@
   --primary-white: #fff;
   --primary-orange: rgb(219, 127, 6);
   --primary-dark: rgb(59, 59, 58);
+  --primary-dark-grey: rgb(71, 70, 70);
   --primary-grey: #ccd1d9;
   --primary-red: #ef4035;
   --primary-hover-red: #f33501;
   --primary-light-grey: #8d8989;
   --primary-transparent-black: rgba(0, 0, 0, 0.7);
+  --primary-black: black;
   --primary-green: rgb(5, 139, 5);
 }
 
@@ -56,7 +58,7 @@ nav ul li {
 }
 
 .navbar-nav > li > a.active,
-.navbar-nav > li > a.active:focus {
+.navbar-nav > li > a:focus {
   border-top: 3px solid var(--primary-orange);
 }
 
@@ -70,7 +72,7 @@ nav ul li {
   background: url(./images/wall_laptop2.jpg) no-repeat;
   background-size: cover;
   background-position: center;
-  height: 90vh;
+  height: 100vh;
 }
 
 .main-info {
@@ -338,7 +340,7 @@ nav ul li {
 }
 
 .portfolio-img-popupbox {
-  width: 45rem;
+  width: 40rem;
   padding: 0 0.5rem;
 }
 
@@ -349,6 +351,10 @@ nav ul li {
 
 .popbox-hyper-link:hover {
   color: blue;
+}
+
+.popupbox-wrapper {
+  margin-top: 8rem;
 }
 
 /*****************Portfolio Media******************/
@@ -535,4 +541,21 @@ textarea.form-control {
   .contacts p {
     padding: 0 0.4rem;
   }
+}
+
+/*---------------- Footer-----------------------*/
+.footer {
+  background: var(--primary-black);
+  color: var(--primary-dark-grey);
+  padding: 3rem;
+}
+
+.footer a {
+  text-decoration: none;
+  color: var(--primary-dark);
+  cursor: pointer;
+}
+
+.footer p {
+  margin: 0;
 }
