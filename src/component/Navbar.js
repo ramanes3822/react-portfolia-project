@@ -1,98 +1,64 @@
-import React from "react";
-import logo from "../images/logo.png";
+import React, { useState, style } from "react";
+import logo from "../images/my_logo3.png";
 import { Link } from "react-scroll";
 
 //react font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
+  const [clicked, setClicked] = useState(false);
+
+  const handleClick = () => {
+    setClicked(!clicked);
+  };
+
+  const menuItems = [
+    { title: "Home", url: "home", cName: "nav-link" },
+    { title: "About", url: "about", cName: "nav-link" },
+    { title: "Services", url: "services", cName: "nav-link" },
+    { title: "Experience", url: "experience", cName: "nav-link" },
+    { title: "Portfolio", url: "portfolio", cName: "nav-link" },
+    { title: "Contact", url: "contact", cName: "nav-link" },
+  ];
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
+    <nav
+      className="navbar navbar-expand-lg bg-dark fixed-top"
+      style={{ color: "lightblue" }}
+    >
       <div className="container">
         <a className="navbar-brand" href="#">
           <img className="logo" src={logo} alt="logo" />
         </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <FontAwesomeIcon icon={faBars} style={{ color: "white" }} />
-        </button>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item active">
-              <Link
-                smooth={true}
-                to="home"
-                offset={-110}
-                className="nav-link"
-                href="#"
-              >
-                Home <span className="sr-only">(current)</span>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                smooth={true}
-                to="about"
-                offset={-110}
-                className="nav-link"
-                href="#"
-              >
-                about me
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                smooth={true}
-                to="services"
-                offset={-110}
-                className="nav-link"
-                href="#"
-              >
-                services
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                smooth={true}
-                to="experience"
-                offset={-110}
-                className="nav-link"
-                href="#"
-              >
-                Experience
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                smooth={true}
-                to="portfolio"
-                offset={-110}
-                className="nav-link"
-                href="#"
-              >
-                portfolio
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                smooth={true}
-                to="contact"
-                offset={-110}
-                className="nav-link"
-                href="#"
-              >
-                contact
-              </Link>
-            </li>
+        <button className="navbar-toggler" onClick={handleClick}>
+          <FontAwesomeIcon
+            icon={clicked ? faTimes : faBars}
+            style={{ color: "#fff" }}
+          />
+        </button>
+        <div
+          className={`${
+            clicked ? "navbar-collapse" : "collapse"
+          } navbar-collapse`}
+        >
+          <ul className="navbar-nav ml-auto ">
+            {menuItems.map(function (items) {
+              return (
+                <li className="nav-item">
+                  <Link
+                    smooth={true}
+                    to={items.url}
+                    offset={-110}
+                    className={items.cName}
+                    onClick={handleClick}
+                  >
+                    {items.title}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
